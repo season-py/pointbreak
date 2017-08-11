@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-segment [(ngModel)]="segment" (ionChange)="updateCoin()">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Favorites
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-searchbar color="primary"
+                   [(ngModel)]="queryText"
+                   (ionInput)="updateCoin()"
+                   placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh()">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list #coinList [hidden]="shownSessions === 0">
+
+    <ion-item-sliding *ngFor="let coin of coins" #slidingItem>
+      <button ion-item (click)="goToSessionDetail()">
+        <h3>
+            <ion-img style="width: 32px; height: 32px;background: transparent !important;" src="/media/icons/{{coin.symbol}}.png"></ion-img>
+            {{coin.symbol}}
+        </h3>
+        <p>
+        </p>
+      </button>
+
+      <ion-item-options>
+        <button ion-button color="favorite" (click)="addFavorite()" *ngIf="segment === 'all'">
+          Favorite
+        </button>
+        <button ion-button color="danger" (click)="removeFavorite()" *ngIf="segment === 'favorites'">
+          Remove
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+
+  <ion-fab bottom right #fab>
+    <button ion-fab><ion-icon name="share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="vimeo" (click)="openSocial('Vimeo', fab)"><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab color="google" (click)="openSocial('Google+', fab)"><ion-icon name="logo-googleplus"></ion-icon></button>
+      <button ion-fab color="twitter" (click)="openSocial('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab color="facebook" (click)="openSocial('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+
+</ion-content>

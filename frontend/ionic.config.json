@@ -1,0 +1,17 @@
+{
+  "name": "frontend",
+  "app_id": "",
+  "type": "ionic-angular",
+  "proxies": [
+        {
+            "path": "/api",
+            "proxyUrl": "http://localhost:8080/"
+        },
+        {
+            "path": "/media",
+            "proxyUrl": "http://localhost:8080/media/"
+        }
+
+    ]
+
+}
