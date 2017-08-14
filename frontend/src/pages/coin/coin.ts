@@ -8,20 +8,21 @@ import { AlertController, App, FabContainer, List, ModalController, NavControlle
 */
 // import moment from 'moment';
 
+import { SparklinePage } from '../sparkline/sparkline';
+
 import { CoinData } from '../../providers/coin-data';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 
-
-
 @Component({
   selector: 'page-coin',
-  templateUrl: 'coin.html'
+  templateUrl: 'coin.html',
+  entryComponents: [SparklinePage],
 })
 export class CoinPage {
 
   @ViewChild('coinList', { read: List }) coinList: List;
-  coins: any = []
+  coins: any = [];
 
   constructor(
     public alertCtrl: AlertController,
@@ -33,17 +34,19 @@ export class CoinPage {
     public confData: ConferenceData,
     public coinData: CoinData,
     public user: UserData,
-  ) {}
+  ) {
+  }
 
   ionViewDidLoad() {
     this.app.setTitle('Coins');
     this.updateCoin();
   }
 
-  updateCoin() {
-    // Close any open sliding items when the schedule updates
-    this.coinList && this.coinList.closeSlidingItems();
+  ngAfterViewInit() {
+  }
 
+  updateCoin() {
+    this.coinList && this.coinList.closeSlidingItems();
     this.coinData.load().subscribe((data: any) => {
       this.coins = data.coins;
     });
@@ -74,4 +77,5 @@ export class CoinPage {
 
   doRefresh() {
   }
+
 }

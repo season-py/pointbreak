@@ -17,6 +17,7 @@ import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
 import { CoinPage } from '../pages/coin/coin';
+import { SparklinePage } from '../pages/sparkline/sparkline';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter';
 import { SessionDetailPage } from '../pages/session-detail/session-detail';
@@ -40,6 +41,7 @@ import { CoinData } from '../providers/coin-data';
     LoginPage,
     MapPage,
     PopoverPage,
+    SparklinePage,
     CoinPage,
     SchedulePage,
     ScheduleFilterPage,
@@ -83,6 +85,7 @@ import { CoinData } from '../providers/coin-data';
     MapPage,
     PopoverPage,
     CoinPage,
+    SparklinePage,
     SchedulePage,
     ScheduleFilterPage,
     SessionDetailPage,

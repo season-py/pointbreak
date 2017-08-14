@@ -10,14 +10,14 @@ from handlers.base import BaseHandler
 
 
 @urlmap(url=r'/coins')
-class TickerHandler(BaseHandler):
+class CoinsHandler(BaseHandler):
 
     @asynchronous
     @gen.coroutine
     def get(self):
         coins = []
         with db_session:
-            for coin in Coin.select():
+            for coin in Coin.select().limit(5):
                 coins.append({
                     'symbol': coin.symbol,
                     'full_name': coin.full_name,
